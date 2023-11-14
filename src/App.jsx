@@ -11,12 +11,32 @@ const initialReviews = [
 ]
 function App() {
 	const [reviews, setReviews] = useState(initialReviews)
+	const [counterShwon, setCounterShown] = useState(true)
+	const [likeCounter, setLikeCouter] = useState(50)
+
+	const handleLikeCounter = () => {
+		setLikeCouter(previousLikeCounter => previousLikeCounter + 1)
+	}
+
+	const handleLoveButton = () => {
+		setLikeCouter(previousLikeCounter => previousLikeCounter + 3)
+	}
 
 	return (
 		<>
 			<h1>Loki</h1>
 			<h2>Rok produkcji: 2021</h2>
-			<LikesCounter />
+			<button
+				onClick={() => setCounterShown(prevCounterShown => !prevCounterShown)}>
+				{counterShwon ? "Schowaj counter" : "Pokaż counter"}
+			</button>
+			{counterShwon && (
+				<LikesCounter
+					numberOfLikes={likeCounter}
+					onLikeButtonClick={handleLikeCounter}
+					onLoveButtonClick={handleLoveButton}
+				/>
+			)}
 			<Plot />
 			<Reviews reviews={reviews} />
 			<Form

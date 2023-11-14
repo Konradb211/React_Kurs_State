@@ -1,21 +1,13 @@
-import { useState } from "react"
-
-export const LikesCounter = () => {
-	const [likeCounter, setLikeCouter] = useState(50)
-
-	const handleLikeCounter = () => {
-		setLikeCouter(previousLikeCounter => previousLikeCounter + 1)
-	}
-
-	const handleLoveButton = () => {
-		setLikeCouter(previousLikeCounter => previousLikeCounter + 3)
-	}
-
+export const LikesCounter = ({
+	numberOfLikes,
+	onLikeButtonClick,
+	onLoveButtonClick,
+}) => {
 	return (
 		<>
-			<h2>Liczba polubień: {likeCounter}</h2>
-			<button onClick={handleLikeCounter}>Lubie to!</button>
-			<button onClick={handleLoveButton}>Kocham to!</button>
+			<h2>Liczba polubień: {numberOfLikes}</h2>
+			<button onClick={onLikeButtonClick}>Lubie to!</button>
+			<button onClick={onLoveButtonClick}>Kocham to!</button>
 		</>
 	)
 }
